@@ -16,12 +16,12 @@ public class Distributer {
 	   
 	public static Connection conn;
 	Statement stmt;
-    PreparedStatement ps;
+   	PreparedStatement ps;
     
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		Distributer obj= new Distributer();
 		Class.forName(JDBC_DRIVER);		
-	    obj.conn = DriverManager.getConnection(DB_URL,USER,PASS);
+	    	obj.conn = DriverManager.getConnection(DB_URL,USER,PASS);
 		obj.tester();
 		
 		System.out.println("\nDistribution Completed");
@@ -77,20 +77,10 @@ public class Distributer {
 			}
 		}else {
 			System.out.println("SweepingRowWise");
-			//if(column+1<=last)
 				this.sweepRowWise(row, column+1, last);
-			//else
-			//	System.out.println("End Reeached");
 		}
 		System.out.println();
 		
-	}
-	
-	public void display(int row, int column) throws ClassNotFoundException, SQLException {
-		Fetcher fetch= new Fetcher();
-		ResultSet rs= fetch.getSpecificRowFacultySorted(row);
-		//System.out.println(rs.getString(column)); //for sweepColumWise
-		//System.out.print(rs.getString(column)+" "); //for sweepRowWise
 	}
 	
 	//move through sid of a particular row horizontally
@@ -104,7 +94,6 @@ public class Distributer {
 		
 		for(int column=start; column<=last; column++) {
 			/*this is where you get sid column wise*/
-			//System.out.print(rs.getString(column)+"  ");
 			this.applyAlgo(row, column, last);
 		}
 	}
